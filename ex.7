@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+typedef struct {
+    char nome[20];
+    float nota;
+} Aluno;
+
+void ordenarPorNota(Aluno v[], int n) {
+    int i, j;
+    Aluno temp;
+
+    for (i = 0; i < n - 1; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (v[j].nota > v[i].nota) {
+                temp = v[i];
+                v[i] = v[j];
+                v[j] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    Aluno turma[5] = {
+        {"Ana", 7.0f},
+        {"Bruno", 9.5f},
+        {"Carla", 6.0f},
+        {"Diego", 8.5f},
+        {"Elis", 9.5f},
+    };
+
+    int i;
+
+    ordenarPorNota(turma, 5);
+
+    for (i = 0; i < 5; i++) {
+        printf("%dº: %s (%.1f)\n",
+               i + 1, turma[i].nome, turma[i].nota);
+    }
+
+    return 0;
+}
